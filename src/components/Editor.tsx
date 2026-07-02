@@ -19,15 +19,36 @@ function Editor() {
 
   if (!activeNote) return null
 
+  function handleExport() {
+    if (!activeNote) return
+    const blob = new Blob([activeNote.content], { type: 'text/markdown' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${activeNote.title || 'untitled'}.md`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
+
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        onBlur={() => renameNote(activeNote.id, title || 'Untitled Note')}
-        className="border-b border-neutral-200 bg-transparent px-6 py-4 text-xl font-semibold outline-none dark:border-neutral-800"
-        placeholder="Untitled Note"
-      />
+      <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-4 dark:border-neutral-800">
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          onBlur={() => renameNote(activeNote.id, title || 'Untitled Note')}
+          className="flex-1 bg-transparent text-xl font-semibold outline-none"
+          placeholder="Untitled Note"
+        />
+        <button
+          onClick={handleExport}
+          className="ml-4 flex-shrink-0 rounded-md border border-neutral-200 px-3 py-1.5 text-sm hover:bg-neutral-100 dark:border-neutral-800 dark:hover:bg-neutral-900"
+        >
+          Export .md
+        </button>
+      </div>
 
       <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
         <textarea

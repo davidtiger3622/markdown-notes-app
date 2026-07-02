@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react'
 import { useNotesStore } from './store/notesStore'
 import { useThemeStore } from './store/themeStore'
+import { useKeyboardShortcut } from './hooks/useKeyboardShortcut'
 import Sidebar from './components/Sidebar'
 import Editor from './components/Editor'
 import Header from './components/Header'
+import ShortcutsHint from './components/ShortcutsHint'
 
 function App() {
   const activeNoteId = useNotesStore((state) => state.activeNoteId)
+  const createNote = useNotesStore((state) => state.createNote)
   const theme = useThemeStore((state) => state.theme)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
+
+  useKeyboardShortcut('n', createNote)
 
   return (
     <div className="flex h-screen flex-col bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
@@ -27,6 +32,7 @@ function App() {
           </div>
         )}
       </div>
+      <ShortcutsHint />
     </div>
   )
 }
