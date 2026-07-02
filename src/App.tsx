@@ -25,7 +25,7 @@ function App() {
       <div className="flex flex-1 overflow-hidden relative">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         {activeNoteId ? (
-          <Editor />
+          <Editor key={activeNoteId} />
         ) : (
           <div className="flex flex-1 items-center justify-center text-neutral-500">
             Select a note or create a new one to get started

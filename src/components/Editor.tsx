@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
@@ -12,10 +12,6 @@ function Editor() {
 
   const activeNote = notes.find((note) => note.id === activeNoteId)
   const [title, setTitle] = useState(activeNote?.title ?? '')
-
-  useEffect(() => {
-    setTitle(activeNote?.title ?? '')
-  }, [activeNoteId])
 
   if (!activeNote) return null
 
