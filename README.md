@@ -2,7 +2,8 @@
 
 A fast, responsive Markdown note-taking app with live preview, dark mode, and local persistence.
 
-**[Live Demo](#)** · **[Report a bug](../../issues)**
+**[Live Demo](https://markdown-notes-app-alpha.vercel.app
+)** · **[Report a bug](../../issues)**
 
 ![Desktop light mode](public/screenshots/desktop-light.png)
 
