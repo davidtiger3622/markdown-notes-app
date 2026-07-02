@@ -1,6 +1,6 @@
 # Markdown Notes
 
-A fast, responsive Markdown note-taking app with live preview, dark mode, and local persistence. Built as a portfolio project to demonstrate React state management, component design, and modern frontend tooling.
+A fast, responsive Markdown note-taking app with live preview, dark mode, and local persistence.
 
 **[Live Demo](#)** · **[Report a bug](../../issues)**
 
